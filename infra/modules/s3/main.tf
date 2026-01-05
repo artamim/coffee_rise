@@ -15,11 +15,9 @@ resource "aws_s3_bucket_website_configuration" "website" {
     suffix = "index.html"
   }
 
-   error_document {
+  error_document {
     key = "index.html"
   }
-
-  routing_rules = local.s3_routing_rules_json
 }
 
 resource "aws_s3_bucket_public_access_block" "website" {
