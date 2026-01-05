@@ -1,0 +1,25 @@
+name: Deploy to S3
+
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::364420385429:role/MyGithubRoles
+          aws-region: ap-south-1
+
+      - name: Sync to S3
+        run: aws s3 sync . s3:coffee-rise-website-2026 --delete --exclude ".git/*" --exclude ".github/*"

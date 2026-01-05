@@ -1,0 +1,70 @@
+# ====================
+# Terraform (all inside /infra)
+# ====================
+
+# Terraform working directory (providers, modules cache)
+infra/.terraform/
+
+# Lock file – actually safe to commit, but many teams ignore it
+# infra/.terraform.lock.hcl   ← Remove this line if you want to commit it (recommended)
+
+# State files – NEVER commit these unless using remote backend
+infra/terraform.tfstate
+infra/terraform.tfstate.backup
+infra/*.tfstate
+infra/*.tfstate.*
+
+# Local variable files
+infra/*.tfvars
+infra/*.tfvars.json
+infra/*.auto.tfvars
+infra/*.auto.tfvars.json
+
+# Override files
+infra/override.tf
+infra/override.tf.json
+infra/*_override.tf
+infra/*_override.tf.json
+
+# Crash logs
+infra/crash.log
+infra/crash.*.log
+
+# ====================
+# General / OS / Editor
+# ====================
+
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Logs and temp
+*.log
+tmp/
+temp/
+
+# ====================
+# Your project-specific
+# ====================
+
+# Preview/screenshot images that aren't part of the site
+coffee-shop-html-template.jpg
+
+# Optional: if you ever add node_modules or build folders
+node_modules/
+dist/
+build/
