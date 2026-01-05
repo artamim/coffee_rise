@@ -15,8 +15,18 @@ resource "aws_s3_bucket_website_configuration" "website" {
     suffix = "index.html"
   }
 
-  error_document {
-    key = "index.html"
+  dynamic "routing_rule" {
+    for_each = local.routing_rules
+
+    content {
+      condition {
+        key_prefix_equals = routing_rule.value.prefix
+      }
+
+      redirect {
+        replace_key_with = routing_rule.value.replace_with
+      }
+    }
   }
 }
 
