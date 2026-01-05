@@ -15,19 +15,11 @@ resource "aws_s3_bucket_website_configuration" "website" {
     suffix = "index.html"
   }
 
-  dynamic "routing_rule" {
-    for_each = local.routing_rules
-
-    content {
-      condition {
-        key_prefix_equals = routing_rule.value.prefix
-      }
-
-      redirect {
-        replace_key_with = routing_rule.value.replace_with
-      }
-    }
+   error_document {
+    key = "index.html"
   }
+
+  routing_rules = local.s3_routing_rules_json
 }
 
 resource "aws_s3_bucket_public_access_block" "website" {
