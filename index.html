@@ -434,11 +434,50 @@
     <script src="lib/tempusdominus/js/moment.min.js"></script>
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!--
     <script>
         fetch('https://5ek3s8ys79.execute-api.ap-south-1.amazonaws.com/track')
             .then(response => response.json())
             .then(data => console.log('Total visits:', data.total_visits))
             .catch(error => console.error('Tracking error:', error));
+    </script>
+    -->
+    <script>
+        const VISITOR_KEY = "coffee-rise-last-visited";   // unique key for your site
+        const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;   // 30 days in milliseconds
+
+        function shouldCountVisit() {
+            const lastVisit = localStorage.getItem(VISITOR_KEY);
+            
+            // If never visited before → count it
+            if (!lastVisit) {
+            return true;
+            }
+
+            // Check how many milliseconds ago was the last visit
+            const lastVisitTime = parseInt(lastVisit, 10);
+            const now = Date.now();
+            
+            // If more than 30 days have passed → count as new visit
+            if (now - lastVisitTime > THIRTY_DAYS_MS) {
+            return true;
+            }
+
+            // Otherwise: same visitor within 30 days → skip
+            return false;
+        }
+
+        if (shouldCountVisit()) {
+            // Count this visit
+            fetch("https://5ek3s8ys79.execute-api.ap-south-1.amazonaws.com/track", {
+            method: "GET",
+            mode: "no-cors",           // behaves like tracking pixel
+            cache: "no-store"
+            }).catch(() => {});          // silent fail, don't break the page
+
+            // Update last visit timestamp
+            localStorage.setItem(VISITOR_KEY, Date.now().toString());
+        }
     </script>
 
     <!-- Contact Javascript File -->
