@@ -23,3 +23,10 @@ jobs:
 
       - name: Sync to S3
         run: aws s3 sync . s3://coffee-rise-website-2026 --delete --exclude ".git/*" --exclude ".github/*" --exclude "infra/*"
+
+      - name: Invalidate CloudFront Cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id YOUR_CLOUDFRONT_DISTRIBUTION_ID_HERE \
+            --paths "/*" \
+            --region us-east-1

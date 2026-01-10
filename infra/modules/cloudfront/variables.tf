@@ -3,6 +3,12 @@ variable "bucket_regional_domain_name" {
   type        = string
 }
 
+variable "distribution_name" {
+  description = "Distribution Name"
+  type        = string
+  default     = "Test01"
+}
+
 variable "bucket_id" {
   description = "S3 bucket ID"
   type        = string

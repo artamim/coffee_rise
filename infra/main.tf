@@ -39,6 +39,7 @@ module "waf" {
 }
 
 module "cloudfront" {
+  distribution_name           = "coffee-rise"
   source                      = "./modules/cloudfront"
   bucket_regional_domain_name = module.web_app_1.bucket_regional_domain_name
   bucket_id                   = module.web_app_1.bucket_id
