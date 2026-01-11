@@ -98,7 +98,15 @@ jobs:
           aws-region: ap-south-1
 
       - name: Sync to S3
-        run: aws s3 sync . s3://coffee-rise-website-2026 --delete --exclude ".git/*" --exclude ".github/*" --exclude "infra/*"
+        run: >-
+          aws s3 sync . s3://coffee-rise-website-2026 --delete
+          --exclude ".git/*"
+          --exclude ".github/*"
+          --exclude "infra/*"
+          --exclude "README.md"
+          --exclude "README.MD"
+          --exclude "READ-ME"
+          --exclude "LICENSE"
 
       - name: Invalidate CloudFront Cache
         run: |
