@@ -33,7 +33,6 @@ Modern, secure, serverless static website infrastructure with real-time visitor 
   - `VisitorCounter` → total visits (indefinite retention)
   - `VisitorLogs` → detailed logs with **7-day TTL**
 - Client-side deduplication (counts visit only once per 30 days per browser)
-- SPA-friendly configuration (all paths return `index.html` → great for React/Vue/etc)
 
 ## Tech Stack
 
@@ -64,6 +63,7 @@ terraform apply --auto-approve
 
 After successful deployment you will get (among others):
 - CloudFront domain name (e.g. d1234567890.cloudfront.net)
+- Distribution ID (e.g. E20RIW5Q8FQGJ2)
 - API Gateway tracking endpoint
 
 ### Website Content Deployment (GitHub Actions)
@@ -161,7 +161,6 @@ if (shouldCountVisit()) {
 - S3 bucket never public
 - Only CloudFront can read content (via OAC + bucket policy)
 - WAF protects against common attacks + rate limiting
-- Lambda runs with least privilege IAM role
 - All traffic HTTPS
 - S3 server-side encryption + versioning enabled
 
