@@ -18,7 +18,7 @@ function shouldCountVisit() {
 
 // Only track if conditions are met
 if (shouldCountVisit()) {
-    fetch("https://5ek3s8ys79.execute-api.ap-south-1.amazonaws.com/track", {
+    fetch("https://ik4gol29ge.execute-api.ap-south-1.amazonaws.com/track", {
         method: "GET",
         mode: "no-cors",
         cache: "no-store"
