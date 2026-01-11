@@ -46,6 +46,11 @@ Modern, secure, serverless static website infrastructure with real-time visitor 
 | CI/CD             | GitHub Actions + OIDC                   |
 
 
+## Diagram:
+
+![alt text](screenshots/AWS_Coffee_Rise_Project.png)
+
+
 ## Deployment
 
 ### Infrastructure (Terraform)
