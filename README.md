@@ -7,6 +7,17 @@
 
 Modern, secure, serverless static website infrastructure with real-time visitor tracking and analytics.
 
+## Screenshots
+
+**Home Page:**
+![alt text](screenshots/image-1.png)
+
+**Visitor Count:**
+![alt text](screenshots/image-2.png)
+
+**Visitor IP and User Agent(Browser):**
+![alt text](screenshots/image-3.png)
+
 ## Features
 
 - Static website hosting (S3 + CloudFront)
@@ -48,7 +59,7 @@ terraform init
 terraform plan
 
 # 3. Apply
-terraform apply
+terraform apply --auto-approve
 ```
 
 After successful deployment you will get (among others):
@@ -124,7 +135,7 @@ function shouldCountVisit() {
 
 // Only track if conditions are met
 if (shouldCountVisit()) {
-    fetch("https://5ek3s8ys79.execute-api.ap-south-1.amazonaws.com/track", {
+    fetch("[API Gateway endpoint]/track", {
         method: "GET",
         mode: "no-cors",
         cache: "no-store"
@@ -153,8 +164,16 @@ if (shouldCountVisit()) {
 - Add country-level stats (GeoIP in Lambda)
 - Improve bot filtering
 
+## CleanUp
+
+- Empty the s3 bucket manually.
+- Run:
+```bash
+terraform destroy --auto-approve
+```
+
 ---
 
-Made with ☕ in 2026
-Happy deploying & tracking! 🚀
+Made with ☕ in 2026! 
+Best Of Luck! 🚀
 
